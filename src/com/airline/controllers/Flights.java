@@ -2,26 +2,24 @@ package com.airline.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.airline.models.Airplane;
 import com.airline.models.Flight;
-import com.airline.models.FlightDestinations;
 import com.airline.service.FlightService;
 
 /**
- * Servlet implementation class AddFlight
+ * Servlet implementation class Flights
  */
-@WebServlet("/AddFlight")
-public class AddFlight extends HttpServlet {
+@WebServlet("/Flights")
+public class Flights extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
@@ -30,7 +28,7 @@ public class AddFlight extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AddFlight() {
+	public Flights() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -42,38 +40,16 @@ public class AddFlight extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		PrintWriter out = response.getWriter();
-		out.println("AddFlight Called");
-		Flight f = new Flight();
+		List<Flight> fList = (List<Flight>) fs.getFlights();
+		request.setAttribute("flight_list", fList);
+		// PrintWriter out = response.getWriter();
+		// out.println("List of Flights will be displayed here..." + fList);
 
-		f.setFlightOrigin(FlightDestinations.Colombo);
-		f.setFlightDestinations(FlightDestinations.London);
-		f.setPrice(400);
-
-		Calendar cal = Calendar.getInstance();
-
-		cal.set(Calendar.YEAR, 2014);
-		cal.set(Calendar.MONTH, 10);
-		cal.set(Calendar.DAY_OF_MONTH, 19);
-		cal.set(Calendar.HOUR_OF_DAY, 19);
-		cal.set(Calendar.MINUTE, 0);
-
-		Date flightTime = cal.getTime();
-
-		System.out.println(flightTime);
-
-		Airplane a = new Airplane();
-
-		a.setModelName("787");
-		a.setPlaneMake("Boeing");
-		a.setSeatingCapacity(250);
-
-		f.setAirplaneDetail(a);
-
-		System.out.println(f);
-		System.out.println(a);
-
-		fs.addFlight(f, a);
+		RequestDispatcher view = request
+				.getRequestDispatcher("WEB-INF/views/flights_list.jsp");
+		
+		view.forward(request, response);
+		
 
 	}
 

@@ -7,7 +7,7 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Pilot
  *
  */
-@NamedQuery(name = "Pilot.findById",query = "SELECT p FROM Pilot p WHERE p.id = :id")
+@NamedQuery(name = "Pilot.findById", query = "SELECT p FROM Pilot p WHERE p.id = :id")
 @Entity
 public class Pilot implements Serializable {
 
@@ -23,6 +23,15 @@ public class Pilot implements Serializable {
 
 	private String firstName;
 	private String lastName;
+
+	private Integer pilotLicense;
+
+	@Enumerated(EnumType.STRING)
+	private PilotRank pilotRank;
+
+	@ManyToOne
+	@JoinColumn(name = "flight_fk")
+	private Flight flightForPilot;
 
 	public Integer getId() {
 		return id;
@@ -71,15 +80,6 @@ public class Pilot implements Serializable {
 	public void setFlightForPilot(Flight flightForPilot) {
 		this.flightForPilot = flightForPilot;
 	}
-
-	private Integer pilotLicense;
-
-	@Enumerated(EnumType.STRING)
-	private PilotRank pilotRank;
-
-	@ManyToOne
-	@JoinColumn(name = "flight_fk")
-	private Flight flightForPilot;
 
 	@Override
 	public String toString() {
