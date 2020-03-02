@@ -87,8 +87,11 @@ public class Passenger implements Serializable {
 		this.flightclass = flightclass;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	@Override
+	public String toString() {
+		return "Passenger [id=" + id + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", dob=" + dob + ", gender="
+				+ gender + ", flightclass=" + flightclass + "]";
 	}
 
 }
