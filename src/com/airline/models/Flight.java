@@ -33,6 +33,18 @@ public class Flight implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date flightTime;
 
+	@OneToOne
+	@JoinColumn(name = "airplane_fk")
+	private Airplane airplaneDetail;
+
+	public Airplane getAirplaneDetail() {
+		return airplaneDetail;
+	}
+
+	public void setAirplaneDetail(Airplane airplaneDetail) {
+		this.airplaneDetail = airplaneDetail;
+	}
+
 	public Integer getId() {
 		return id;
 	}
