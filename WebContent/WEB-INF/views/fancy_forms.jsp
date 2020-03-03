@@ -103,7 +103,7 @@
         </form>
 
         <h1>Add Pilot to Flight</h1>
-        <form method="POST" action="">
+        <form method="POST" action="CreatePilotAndAddToFlight">
 
             First name:
             <input name = "first_name" type="text"></input>
