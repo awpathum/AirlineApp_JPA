@@ -10,7 +10,7 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Flight
  *
  */
-@NamedQuery(name = "Flight.findById",query = "SELECT f FROM Flight f WHERE f.id = :id")
+@NamedQuery(name = "Flight.findById", query = "SELECT f FROM Flight f WHERE f.id = :id")
 @Entity
 public class Flight implements Serializable {
 
@@ -35,13 +35,17 @@ public class Flight implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date flightTime;
 
-	@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinColumn(name = "airplane_fk")
 	private Airplane airplaneDetail;
 
 	@OneToMany(mappedBy = "flightForPilot")
 	// Don't use JoinColumn here(This column is a list)
 	private List<Pilot> pilots;
+
+	@ManyToMany
+	@JoinTable(name = "f_p_join", joinColumns = @JoinColumn(name = "flight_fk"), inverseJoinColumns = @JoinColumn(name = "passenger_fk"))
+	private List<Passenger> passengers;
 
 	public Airplane getAirplaneDetail() {
 		return airplaneDetail;
@@ -97,6 +101,14 @@ public class Flight implements Serializable {
 
 	public void setFlightTime(Date flightTime) {
 		this.flightTime = flightTime;
+	}
+
+	public List<Passenger> getPassengers() {
+		return passengers;
+	}
+
+	public void setPassengers(List<Passenger> passengers) {
+		this.passengers = passengers;
 	}
 
 	@Override
