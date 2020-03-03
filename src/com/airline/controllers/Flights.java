@@ -42,8 +42,8 @@ public class Flights extends HttpServlet {
 
 		List<Flight> fList = (List<Flight>) fs.getFlights();
 		request.setAttribute("flight_list", fList);
-		// PrintWriter out = response.getWriter();
-		// out.println("List of Flights will be displayed here..." + fList);
+//		 PrintWriter out = response.getWriter();
+//		 out.println("List of Flights will be displayed here..." + fList);
 
 		RequestDispatcher view = request
 				.getRequestDispatcher("WEB-INF/views/flights_list.jsp");

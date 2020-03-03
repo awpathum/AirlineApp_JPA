@@ -32,7 +32,7 @@ public class FlightService {
 	public void addFlight(Flight f, Airplane a) {
 
 		em.persist(f);
-		em.persist(a);
+	//	em.persist(a); No need to persist this, Cascade types added to the flight class
 	}
 
 	public void addPilotToFlight(String pilotId, String flightId) {

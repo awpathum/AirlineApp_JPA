@@ -35,7 +35,7 @@ public class Flight implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date flightTime;
 
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 	@JoinColumn(name = "airplane_fk")
 	private Airplane airplaneDetail;
 
