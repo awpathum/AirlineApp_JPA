@@ -42,13 +42,33 @@ public class AddFlight extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
 		PrintWriter out = response.getWriter();
-		out.println("AddFlight Called");
+		// out.println("AddFlight Called");
 		Flight f = new Flight();
 
-		f.setFlightOrigin(FlightDestinations.Colombo);
-		f.setFlightDestinations(FlightDestinations.London);
-		f.setPrice(400);
+		String from_destination = request.getParameter("from_destination");
+		f.setFlightOrigin(FlightDestinations.valueOf(from_destination));
+
+		String to_destination = request.getParameter("to_destination");
+		f.setFlightDestinations(FlightDestinations.valueOf(to_destination));
+
+		String price = request.getParameter("price");
+		f.setPrice(Integer.parseInt(price));
+
+		Integer year = Integer.parseInt(request.getParameter("year"));
+		Integer month = Integer.parseInt(request.getParameter("month"));
+		Integer day = Integer.parseInt(request.getParameter("day"));
+		Integer hour = Integer.parseInt(request.getParameter("hour"));
+		Integer minute = Integer.parseInt(request.getParameter("minute"));
 
 		Calendar cal = Calendar.getInstance();
 
@@ -60,13 +80,20 @@ public class AddFlight extends HttpServlet {
 
 		Date flightTime = cal.getTime();
 
+		f.setFlightTime(flightTime);
+
 		System.out.println(flightTime);
 
 		Airplane a = new Airplane();
 
-		a.setModelName("787");
-		a.setPlaneMake("Boeing");
-		a.setSeatingCapacity(250);
+		String planeMake = request.getParameter("airplane_make");
+		a.setModelName(planeMake);
+
+		String planeModelName = request.getParameter("airplane_model");
+		a.setPlaneMake(planeModelName);
+		Integer seating = Integer.parseInt(request
+				.getParameter("airplane_seating"));
+		a.setSeatingCapacity(seating);
 
 		f.setAirplaneDetail(a);
 
@@ -75,15 +102,8 @@ public class AddFlight extends HttpServlet {
 
 		fs.addFlight(f, a);
 
-	}
+		response.sendRedirect("Flights");
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

@@ -44,13 +44,13 @@ public class Passengers extends HttpServlet {
 
 		List<Passenger> pList = (List<Passenger>) ps.getPassengers();
 		request.setAttribute("passengers_list", pList);
-		 PrintWriter out = response.getWriter();
-		 out.println("List of Passengers will be displayed here..." + pList);
+//		 PrintWriter out = response.getWriter();
+//		 out.println("List of Passengers will be displayed here..." + pList);
 
-//		RequestDispatcher view = request
-//				.getRequestDispatcher("WEB-INF/views/flights_list.jsp");
-//		
-//		view.forward(request, response);
+		RequestDispatcher view = request
+				.getRequestDispatcher("WEB-INF/views/passengers_list.jsp");
+
+		view.forward(request, response);
 		
 
 	}

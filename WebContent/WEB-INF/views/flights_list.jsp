@@ -11,6 +11,7 @@
 
 	<table>
 		<tr>
+			<th>Id</th>
 			<th>From</th>
 			<th>To</th>
 			<th>Time</th>
@@ -29,52 +30,49 @@
 		%>
 
 		<tr>
+			<td><%=fList.get(i).getId()%></td>
 			<td><%=fList.get(i).getFlightOrigin()%></td>
 			<td><%=fList.get(i).getFlightDestinations()%></td>
 			<td><%=fList.get(i).getFlightTime()%></td>
 			<td><%=fList.get(i).getPrice()%></td>
-			
-			<td><%= fList.get(i).getAirplaneDetail().getPlaneMake() + " "+ " " + fList.get(i).getAirplaneDetail().getModelName() %></td>
-			<td><%=fList.get(i).getAirplaneDetail().getSeatingCapacity() %></td>
+
+			<td><%=fList.get(i).getAirplaneDetail().getPlaneMake() + " "
+						+ " " + fList.get(i).getAirplaneDetail().getModelName()%></td>
+			<td><%=fList.get(i).getAirplaneDetail().getSeatingCapacity()%></td>
+
+			<td>
+				<%
+					if (fList.get(i).getPilots() != null) {
+				%> <%=fList.get(i).getPilots().size()%>Pilots <%
+ 	} else {
+ %> No Pilots Yet <%
+ 	}
+ %>
 			
 			<td>
 				<%
-				if(fList.get(i).getPilots()!=null){
-					
-				%>
-				<%=fList.get(i).getPilots().size() %>Pilots
+					if (fList.get(i).getPilots() != null) {
+							List<Pilot> pList = (List<Pilot>) fList.get(i).getPilots();
+							for (Integer j = 0; j < pList.size(); j++) {
+				%> <%=(j + 1) + ")" + pList.get(j).getFirstName()
+								+ " " + pList.get(j).getLastName() + " "
+								+ pList.get(j).getPilotRank() + ")" + "<br/>"%>
 				<%
-				}
-				else{
-				%>
-				No Pilots Yet
-				<%
-				}
-				%>
-				
-				<td>
-				
-					<%
-						if(fList.get(i).getPilots()!=null){
-							List<Pilot> pList = (List<Pilot>)fList.get(i).getPilots();
-							for(Integer j = 0;j<pList.size();j++){
-								
-							
-					%>
-						<%= (j+1)+ ")" + pList.get(j).getFirstName()+ " " + pList.get(j).getLastName() +" " +pList.get(j).getPilotRank() + ")" + "<br/>"    %>
-					<%
-							}//for
+					}//for
 						}
-					%>
-				
-				</td>
-				
-			
-				
-						
-					
+				%>
+
 			</td>
-				
+
+
+
+
+
+			</td>
+		<tr>
+			<td colspan="9">No Passengers on this Flight Yet!</td>
+		</tr>
+
 		</tr>
 		<%
 			}
