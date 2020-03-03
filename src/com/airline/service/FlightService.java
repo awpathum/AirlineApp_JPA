@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 
 import com.airline.models.Airplane;
 import com.airline.models.Flight;
+import com.airline.models.Passenger;
 import com.airline.models.Pilot;
 
 /**
@@ -32,7 +33,8 @@ public class FlightService {
 	public void addFlight(Flight f, Airplane a) {
 
 		em.persist(f);
-	//	em.persist(a); No need to persist this, Cascade types added to the flight class
+		// em.persist(a); No need to persist this, Cascade types added to the
+		// flight class
 	}
 
 	public void addPilotToFlight(String pilotId, String flightId) {
@@ -60,14 +62,39 @@ public class FlightService {
 		p.setFlightForPilot(f);
 	}
 
+//	public void addPassengerToFlight(String pid, String fid) {
+//
+//		TypedQuery<Flight> fQuery = em.createNamedQuery("Flight.findById",
+//				Flight.class);
+//
+//		fQuery.setParameter("id", Integer.parseInt(fid));
+//
+//		Flight f = fQuery.getSingleResult();
+//
+//		TypedQuery<Passenger> pQuery = em.createNamedQuery(
+//				"Passanger.findById", Passenger.class);
+//
+//		pQuery.setParameter("id", Integer.parseInt(pid));
+//
+//		Passenger p = pQuery.getSingleResult();
+//
+//		List<Passenger> pList = f.getPassengers();
+//
+//		pList.add(p);
+//		
+//		f.setPassengers(pList);
+//		
+//		
+//
+//	}
+
 	public List<Flight> getFlights() {
 
 		TypedQuery<Flight> query = em.createQuery("SELECT f FROM Flight f",
 				Flight.class);
-		
-		List<Flight> results =  query.getResultList();
+
+		List<Flight> results = query.getResultList();
 		return results;
-		
 
 	}
 }
