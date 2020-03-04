@@ -133,7 +133,7 @@
         </form>
 
         <h1>Add Passenger</h1>
-        <form action="POST" action="">
+        <form action="POST" action="AddPassenger">
 
             Fisrt Name:
             <input type="text" name="first_name"></input>
