@@ -42,4 +42,10 @@ public class PassengerService {
     	return pList;
     }
     
+    public void addFlightTicketToPassenger(String flightId,String passengerId){
+    	
+    	
+    }
+    
+    
 }

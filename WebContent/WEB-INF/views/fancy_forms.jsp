@@ -159,7 +159,7 @@
         </form>
 
             <h1>Add Passenger to Flight</h1>
-        <form action="" method="POST">
+        <form action="AddPassengerToFlight" method="POST">
 
             Add a Passenger with an id of
 
@@ -175,7 +175,7 @@
 
         <h1>Add flight to passenger <span style="font-size: 16px; vertical-align: middle;">(give a passenger another flight ticket to his/her collections of flight tickets)</span></h1>
         
-        <form action="" method="POST">
+        <form action="AddFlightTicketToPassenger" method="POST">
 
             Add a ticket for a flight with an id of
 
