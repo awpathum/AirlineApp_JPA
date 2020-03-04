@@ -133,7 +133,11 @@
         </form>
 
         <h1>Add Passenger</h1>
+<<<<<<< HEAD
+        <form method="POST" action="AddPassenger">
+=======
         <form action="POST" action="AddPassenger">
+>>>>>>> master
 
             First Name:
             <input type="text" name="first_name"></input>
