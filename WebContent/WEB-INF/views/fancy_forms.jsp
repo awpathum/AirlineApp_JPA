@@ -125,7 +125,7 @@
             </select>
             <br/><br/>
 
-            Fligth Id:
+            Flight Id:
             <input name = "fid" type="text"></input>
             <hr/>
             <button type="submit">Add Pilot to Flight</button>
@@ -133,9 +133,13 @@
         </form>
 
         <h1>Add Passenger</h1>
+<<<<<<< HEAD
         <form method="POST" action="AddPassenger">
+=======
+        <form action="POST" action="AddPassenger">
+>>>>>>> master
 
-            Fisrt Name:
+            First Name:
             <input type="text" name="first_name"></input>
             <br/><br/>
 

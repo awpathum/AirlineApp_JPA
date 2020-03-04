@@ -65,6 +65,32 @@ public class FlightService {
 		p.setFlightForPilot(f);
 	}
 
+//	public void addPassengerToFlight(String pid, String fid) {
+//
+//		TypedQuery<Flight> fQuery = em.createNamedQuery("Flight.findById",
+//				Flight.class);
+//
+//		fQuery.setParameter("id", Integer.parseInt(fid));
+//
+//		Flight f = fQuery.getSingleResult();
+//
+//		TypedQuery<Passenger> pQuery = em.createNamedQuery(
+//				"Passanger.findById", Passenger.class);
+//
+//		pQuery.setParameter("id", Integer.parseInt(pid));
+//
+//		Passenger p = pQuery.getSingleResult();
+//
+//		List<Passenger> pList = f.getPassengers();
+//
+//		pList.add(p);
+//		
+//		f.setPassengers(pList);
+//		
+//		
+//
+//	}
+
 	public List<Flight> getFlights() {
 
 		TypedQuery<Flight> query = em.createQuery("SELECT f FROM Flight f",
@@ -72,6 +98,7 @@ public class FlightService {
 
 		List<Flight> results = query.getResultList();
 		return results;
+<<<<<<< HEAD
 
 	}
 
@@ -109,6 +136,8 @@ public class FlightService {
 		p.getFlights().add(f);
 		
 		
+=======
+>>>>>>> master
 
 	}
 }
