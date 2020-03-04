@@ -106,7 +106,7 @@ public class FlightService {
 		List<Passenger> pList = f.getPassengers();
 		pList.add(p);
 		f.setPassengers(pList);
-		//p.getFlights().add(f);
+		p.getFlights().add(f);
 		
 		
 
