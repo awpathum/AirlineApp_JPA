@@ -5,12 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: Passenger
  *
  */
 @Entity
+@XmlRootElement
 public class Passenger implements Serializable {
 
 	@Transient
